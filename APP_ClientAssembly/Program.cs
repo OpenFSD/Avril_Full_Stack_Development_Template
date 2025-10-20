@@ -1,27 +1,20 @@
-﻿using System;
-
-namespace TESTBENCH_LIBs_Csharp
+﻿namespace Avril_FSD.ClientAssembly
 {
     class Program
     {
+        static private Avril_FSD.ClientAssembly.Framework_Client framework = null;
+
         static void Main(string[] args)
         {
-            Console.WriteLine("started TESTBENCH.");
-//CLIENT
-            IntPtr programId_ConcurrentQue_C = Avril_FSD.Library_For_LaunchEnableForConcurrentThreadsAt_CLIENT.Initialise_LaunchEnableForConcurrentThreadsAt();
-            Console.WriteLine("created Library_For_LaunchEnableForConcurrentThreadsAt_CLIENT");
+            System.Console.WriteLine("started progrma entry.");
+            framework = new Avril_FSD.ClientAssembly.Framework_Client();
+            while (framework == null) { /* wait untill is created */ }
+            framework.Initialise(framework);
+        }
 
-            IntPtr programId_WriteQue_C_IA = Avril_FSD.Library_For_WriteEnableForThreadsAt_CLIENTINPUTACTION.Initialise_WriteEnable();
-            Console.WriteLine("created Library_For_WriteEnableForThreadsAt_CLIENTINPUTACTION");
-
-            IntPtr programId_WriteQue_C_OR = Avril_FSD.Library_For_WriteEnableForThreadsAt_CLIENTOUTPUTRECIEVE.Initialise_WriteEnable();
-            Console.WriteLine("created Library_For_WriteEnableForThreadsAt_CLIENTOUTPUTRECIEVE");
-
-
-            //SERVER
-            //IntPtr program_ServerConcurrnecy = Avril_FSD.Library_For_Server_Concurrency.Initialise_Server_Concurrency();
-            Console.WriteLine("end TESTBENCH.");
-            while (true) { }
+        static public Avril_FSD.ClientAssembly.Framework_Client Get_framework_Client()
+        {
+            return framework;
         }
     }
 }
