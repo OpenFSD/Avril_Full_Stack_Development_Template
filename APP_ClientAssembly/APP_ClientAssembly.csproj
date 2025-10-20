@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <PlatformTarget>x86</PlatformTarget>
+    <Platforms>AnyCPU;x86</Platforms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="LIBLaunchEnableForConcurrentThreadsAtCLIENT">
+      <HintPath>..\..\Avril_FSD_Libraries\Release\LIBLaunchEnableForConcurrentThreadsAtCLIENT.dll</HintPath>
+    </Reference>
+    <Reference Include="LIBWriteEnableForThreadsAtCLIENTINPUTACTION">
+      <HintPath>..\..\Avril_FSD_Libraries\Release\LIBWriteEnableForThreadsAtCLIENTINPUTACTION.dll</HintPath>
+    </Reference>
+    <Reference Include="LIBWriteEnableForThreadsAtCLIENTOUTPUTRECIEVE">
+      <HintPath>..\..\Avril_FSD_Libraries\Release\LIBWriteEnableForThreadsAtCLIENTOUTPUTRECIEVE.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="LIBLaunchEnableForConcurrentThreadsAtCLIENT.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="LIBWriteEnableForThreadsAtCLIENTINPUTACTION.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="LIBWriteEnableForThreadsAtCLIENTOUTPUTRECIEVE.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>
