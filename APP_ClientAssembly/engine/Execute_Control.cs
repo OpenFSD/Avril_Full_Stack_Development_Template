@@ -17,7 +17,7 @@ namespace Avril_FSD.ClientAssembly
             }
         }
 
-        public bool Get_flag_isInitialised_ClientApp()
+        private void Calc_flag_isInitialised_ClientApp()
         {
             Set_flag_SystemInitialised(false);
             for (byte index = 0; index < _flag_ThreadInitialised.Length; index++)
@@ -27,7 +27,6 @@ namespace Avril_FSD.ClientAssembly
                     Set_flag_SystemInitialised(true);
                 }
             }
-            return Get_flag_SystemInitialised();
         }
         public bool Get_flag_SystemInitialised()
         {
@@ -52,6 +51,7 @@ namespace Avril_FSD.ClientAssembly
         {
             System.Console.WriteLine("_flag_ThreadInitialised[ " + coreId + " ] = " + value);//TestBench
             _flag_ThreadInitialised[coreId] = value;
+            Calc_flag_isInitialised_ClientApp();
         }
     }
 }

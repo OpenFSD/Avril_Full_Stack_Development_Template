@@ -60,33 +60,30 @@ namespace Avril_FSD.ClientAssembly
                 }
             }
             System.Console.WriteLine("Thread Initalised => Thread_Concurrent()");//TestBench
-            while (obj.Get_client().Get_execute().Get_execute_Control().Get_flag_isInitialised_ClientApp() == true)
+            while (obj.Get_client().Get_execute().Get_execute_Control().Get_flag_SystemInitialised() == true)
             {
 
             }
             System.Console.WriteLine("Thread Starting => Thread_Concurrent()");//TestBench
-            while (obj.Get_client().Get_execute().Get_execute_Control().Get_flag_isInitialised_ClientApp() == false)
+            while (obj.Get_client().Get_execute().Get_execute_Control().Get_flag_SystemInitialised() == false)
             {
                 if (obj.Get_client().Get_data().Get_data_Control().Get_flag_IsLoaded_Stack_OutputRecieve())
                 {
-                    if (obj.Get_client().Get_data().Get_data_Control().Get_flag_isNewInputDataReady())
+                    Avril_FSD.Library_For_WriteEnableForThreadsAt_CLIENTOUTPUTRECIEVE.Write_Start(obj.Get_client().Get_execute().Get_program_WriteQue_C_OR(), Get_coreId());
+                    obj.Get_client().Get_data().Get_output_Instnace().Get_buffer_Output_Recieve_Reference_ForCore((byte)(Get_coreId() - 3)).Get_output_Control().Select_Set_Output_Subset(obj, (byte)(Get_coreId() - 3), obj.Get_client().Get_data().Get_output_Instnace().Get_buffer_Output_Recieve_Reference_ForCore((byte)(Get_coreId() - 3)).Get_praiseEventId());
+                    obj.Get_client().Get_algorithms().Get_concurrent(3).Get_concurrent_Control().SelectSet_Algorithm_Subset(obj, obj.Get_client().Get_data().Get_output_Instnace().Get_FRONT_outputDoubleBuffer(obj).Get_praiseEventId(), Get_coreId());
+                    obj.Get_client().Get_data().Get_data_Control().Pop_Stack_OutputRecieve(obj.Get_client().Get_data().Get_output_Instnace().Get_BACK_outputDoubleBuffer(obj), obj.Get_client().Get_data().Get_output_Instnace().Get_stack_Client_OutputRecieves());
+                    obj.Get_client().Get_data().Flip_OutBufferToWrite();
+                    obj.Get_client().Get_data().Get_data_Control().Do_Store_PraiseOutputRecieve_To_GameInstanceData(obj, obj.Get_client().Get_data().Get_output_Instnace().Get_stack_Client_OutputRecieves().ElementAt(1));
+                    Avril_FSD.Library_For_LaunchEnableForConcurrentThreadsAt_CLIENT.Thread_End(obj.Get_client().Get_execute().Get_program_ConcurrentQue_C(), (byte)(Get_coreId() - 3));
+                    if (obj.Get_client().Get_data().Get_data_Control().Get_flag_IsLoaded_Stack_OutputRecieve())
                     {
-                        Avril_FSD.Library_For_WriteEnableForThreadsAt_CLIENTOUTPUTRECIEVE.Write_Start(obj.Get_client().Get_execute().Get_program_WriteQue_C_OR(), Get_coreId());
-                        obj.Get_client().Get_data().Get_output_Instnace().Get_buffer_Output_Recieve_Reference_ForCore((byte)(Get_coreId() - 3)).Get_output_Control().Select_Set_Output_Subset(obj, (byte)(Get_coreId() - 3), obj.Get_client().Get_data().Get_output_Instnace().Get_buffer_Output_Recieve_Reference_ForCore((byte)(Get_coreId() - 3)).Get_praiseEventId());
-                        obj.Get_client().Get_algorithms().Get_concurrent(3).Get_concurrent_Control().SelectSet_Algorithm_Subset(obj, obj.Get_client().Get_data().Get_output_Instnace().Get_FRONT_outputDoubleBuffer(obj).Get_praiseEventId(), Get_coreId());
-                        obj.Get_client().Get_data().Get_data_Control().Pop_Stack_OutputRecieve(obj.Get_client().Get_data().Get_output_Instnace().Get_BACK_outputDoubleBuffer(obj), obj.Get_client().Get_data().Get_output_Instnace().Get_stack_Client_OutputRecieves());
-                        obj.Get_client().Get_data().Flip_OutBufferToWrite();
-                        obj.Get_client().Get_data().Get_data_Control().Do_Store_PraiseOutputRecieve_To_GameInstanceData(obj, obj.Get_client().Get_data().Get_output_Instnace().Get_stack_Client_OutputRecieves().ElementAt(1));
-                        Avril_FSD.Library_For_LaunchEnableForConcurrentThreadsAt_CLIENT.Thread_End(obj.Get_client().Get_execute().Get_program_ConcurrentQue_C(), (byte)(Get_coreId() - 3));
-                        if (obj.Get_client().Get_data().Get_data_Control().Get_flag_IsLoaded_Stack_OutputRecieve())
+                        if(Avril_FSD.Library_For_LaunchEnableForConcurrentThreadsAt_CLIENT.Get_State_LaunchBit(obj.Get_client().Get_execute().Get_program_ConcurrentQue_C()))
                         {
-                            if(Avril_FSD.Library_For_LaunchEnableForConcurrentThreadsAt_CLIENT.Get_State_LaunchBit(obj.Get_client().Get_execute().Get_program_ConcurrentQue_C()))
-                            {
-                                Avril_FSD.Library_For_LaunchEnableForConcurrentThreadsAt_CLIENT.Request_Wait_Launch(obj.Get_client().Get_execute().Get_program_ConcurrentQue_C(), (byte)(Get_coreId()-3));
-                            }
+                            Avril_FSD.Library_For_LaunchEnableForConcurrentThreadsAt_CLIENT.Request_Wait_Launch(obj.Get_client().Get_execute().Get_program_ConcurrentQue_C(), (byte)(Get_coreId()-3));
                         }
-                        Avril_FSD.Library_For_WriteEnableForThreadsAt_CLIENTOUTPUTRECIEVE.Write_End(obj.Get_client().Get_execute().Get_program_WriteQue_C_OR(), Get_coreId());
                     }
+                    Avril_FSD.Library_For_WriteEnableForThreadsAt_CLIENTOUTPUTRECIEVE.Write_End(obj.Get_client().Get_execute().Get_program_WriteQue_C_OR(), Get_coreId());
                 }
             }
         }

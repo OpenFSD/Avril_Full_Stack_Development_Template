@@ -133,7 +133,10 @@ namespace Avril_FSD.ClientAssembly
 
             Avril_FSD.ClientAssembly.Framework_Client obj = Avril_FSD.ClientAssembly.Program.Get_framework_Client();
             obj.Get_client().Get_execute().Initialise_Threads(obj);
+            while (obj.Get_client().Get_execute().Get_execute_Control().Get_flag_SystemInitialised() == true)
+            {
 
+            }
             System.Console.WriteLine("OnLoad .. done");
         }
 
@@ -164,29 +167,28 @@ namespace Avril_FSD.ClientAssembly
 
         protected override void OnUpdateFrame(FrameEventArgs e)
         {
-            _time += e.Time;
-            foreach (var item in _gameObjects)
-            {
-                item.Update(_time, e.Time);
-            }
             Avril_FSD.ClientAssembly.Framework_Client obj = Program.Get_framework_Client();
-            while (obj.Get_client().Get_execute().Get_execute_Control().Get_flag_isInitialised_ClientApp() == true)
+            if (obj.Get_client().Get_execute().Get_execute_Control().Get_flag_SystemInitialised() == false)
             {
+                _time += e.Time;
+                foreach (var item in _gameObjects)
+                {
+                    item.Update(_time, e.Time);
+                }
+                Avril_FSD.Library_For_WriteEnableForThreadsAt_CLIENTINPUTACTION.Write_Start(obj.Get_client().Get_execute().Get_program_WriteQue_C_IA(), 0);
+                HandleKeyboard(obj, e.Time);
+                HandleMouse(obj);
+                Avril_FSD.Library_For_WriteEnableForThreadsAt_CLIENTINPUTACTION.Write_End(obj.Get_client().Get_execute().Get_program_WriteQue_C_IA(), 0);
+                switch (cameraSelector)
+                {
+                    case false:
+                        Get_gameObjectFactory().Get_player().Get_CameraFP().Update(_time, e.Time);
+                        break;
 
-            }
-            Avril_FSD.Library_For_WriteEnableForThreadsAt_CLIENTINPUTACTION.Write_Start(obj.Get_client().Get_execute().Get_program_WriteQue_C_IA(), 0);
-            HandleKeyboard(obj, e.Time);
-            HandleMouse(obj);
-            Avril_FSD.Library_For_WriteEnableForThreadsAt_CLIENTINPUTACTION.Write_End(obj.Get_client().Get_execute().Get_program_WriteQue_C_IA(), 0);
-            switch (cameraSelector)
-            {
-                case false:
-                    Get_gameObjectFactory().Get_player().Get_CameraFP().Update(_time, e.Time);
-                    break;
-
-                case true:
-                    Get_gameObjectFactory().Get_player().Get_CameraTP().Update(_time, e.Time);
-                    break;
+                    case true:
+                        Get_gameObjectFactory().Get_player().Get_CameraTP().Update(_time, e.Time);
+                        break;
+                }
             }
         }
         private void HandleMouse(Avril_FSD.ClientAssembly.Framework_Client obj)
@@ -194,9 +196,10 @@ namespace Avril_FSD.ClientAssembly
             Console.WriteLine("TESTBENCH => HandleMouse");
             MouseState mouseState = Mouse.GetCursorState();
             var buffer = obj.Get_client().Get_data().Get_input_Instnace().Get_FRONT_inputDoubleBuffer(obj);
+            Console.WriteLine("Get_isPraiseActive() = " + obj.Get_client().Get_data().Get_data_Control().Get_isPraiseActive(1));
             if (obj.Get_client().Get_data().Get_data_Control().Get_isPraiseActive(1) == false)
             {
-                Console.WriteLine("Get_isPraiseActive() = false"); 
+                Console.WriteLine("TESTBENCH => Do PRAISE 1 start");
                 obj.Get_client().Get_data().Get_data_Control().Set_isPraiseActive(1, true);
                 buffer.Set_playerId(0);
                 buffer.Set_praiseEventId(1);
@@ -206,7 +209,7 @@ namespace Avril_FSD.ClientAssembly
                 subset.Set_Mouse_Y(mouseState.Y);
                 obj.Get_client().Get_data().Flip_InBufferToWrite();
                 obj.Get_client().Get_data().Get_data_Control().Push_Stack_Client_InputAction(obj.Get_client().Get_data().Get_input_Instnace().Get_stack_Client_InputSend(), obj.Get_client().Get_data().Get_input_Instnace().Get_BACK_inputDoubleBuffer(obj));
-                
+                Console.WriteLine("TESTBENCH => Do PRAISE 1 end");
             }
         }
         private void HandleKeyboard(Avril_FSD.ClientAssembly.Framework_Client obj, double dt)

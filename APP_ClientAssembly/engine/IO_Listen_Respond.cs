@@ -34,12 +34,12 @@ namespace Avril_FSD.ClientAssembly
                 }
             }
             System.Console.WriteLine("Thread Initalised => Thread_Input_Send()");//TestBench
-            while (obj.Get_client().Get_execute().Get_execute_Control().Get_flag_isInitialised_ClientApp() == true)
+            while (obj.Get_client().Get_execute().Get_execute_Control().Get_flag_SystemInitialised() == true)
             {
 
             }
             System.Console.WriteLine("Thread Starting => Thread_Input_Send()");//TestBench
-            while (obj.Get_client().Get_execute().Get_execute_Control().Get_flag_isInitialised_ClientApp() == false)
+            while (obj.Get_client().Get_execute().Get_execute_Control().Get_flag_SystemInitialised() == false)
             {
                 //NetworkingSockets client = new NetworkingSockets();
                 if(obj.Get_client().Get_data().Get_data_Control().Get_flag_IsLoaded_Stack_InputAction())
@@ -126,7 +126,9 @@ namespace Avril_FSD.ClientAssembly
                                             }
                                             break;
                                     }
+                                    Console.WriteLine("SendMessageToConnection(connection, data)");
                                     obj.Get_client().Get_execute().Get_networking_Client().Get_client().SendMessageToConnection(connection, data);
+                                    Console.WriteLine(".done SendMessageToConnection(connection, data)");
                                 }
                                 netMessage.Destroy();
                             }
@@ -151,14 +153,14 @@ namespace Avril_FSD.ClientAssembly
                 }
             }
             System.Console.WriteLine("Thread Initalised => Thread_Output_Respond()");//TestBench
-            while (obj.Get_client().Get_execute().Get_execute_Control().Get_flag_isInitialised_ClientApp() == true)
+            while (obj.Get_client().Get_execute().Get_execute_Control().Get_flag_SystemInitialised() == true)
             {
 
             }
             System.Console.WriteLine("Thread Starting => Thread_Output_Respond()");//TestBench
-            while (obj.Get_client().Get_execute().Get_execute_Control().Get_flag_isInitialised_ClientApp() == false)
+            while (obj.Get_client().Get_execute().Get_execute_Control().Get_flag_SystemInitialised() == false)
             {
-                if (obj.Get_client().Get_data().Get_data_Control().Get_flag_isNewOutputDataReady())
+                if (obj.Get_client().Get_data().Get_data_Control().Get_flag_IsLoaded_Stack_InputAction())
                 {
                     StatusCallback status = (ref StatusInfo info) =>
                     {
