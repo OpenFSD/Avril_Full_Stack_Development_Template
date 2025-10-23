@@ -10,8 +10,8 @@ namespace Avril_FSD
         void Initialise_Control();
         class Concurrent_Control* Get_Concurrent_Control();
 
-        static void Thread_Concurrency(class Framework_Server* obj, __int8 concurrent_coreId);
-        void Do_Concurrent_Algorithm_For_PraiseEventId(class Framework_Server* obj, char playerId, __int8 ptr_praiseEventId, class Object* ptr_Algorithm_Subset, class Object* ptr_Input_Subset, class Object* ptr_Output_Subset);
+        static void Thread_Concurrency(class Avril_FSD::Framework_Server* obj, __int8 concurrent_coreId);
+        void Do_Concurrent_Algorithm_For_PraiseEventId(class Avril_FSD::Framework_Server* obj, char playerId, __int8 ptr_praiseEventId, class Object* ptr_Algorithm_Subset, class Object* ptr_Input_Subset, class Object* ptr_Output_Subset);
 
         class Object* Get_Algorithm_Subset();
         
@@ -22,6 +22,6 @@ namespace Avril_FSD
     protected:
 
     private:
-        static void Set_Concurrent_Control(class Concurrent_Control* concurrent_control);
+        static void Set_Concurrent_Control(class Avril_FSD::Concurrent_Control* concurrent_control);
     };
 }

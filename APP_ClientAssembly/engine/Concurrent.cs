@@ -86,7 +86,6 @@ namespace Avril_FSD.ClientAssembly
                             }
                         }
                         Avril_FSD.Library_For_WriteEnableForThreadsAt_CLIENTOUTPUTRECIEVE.Write_End(obj.Get_client().Get_execute().Get_program_WriteQue_C_OR(), Get_coreId());
-                    
                     }
                 }
             }

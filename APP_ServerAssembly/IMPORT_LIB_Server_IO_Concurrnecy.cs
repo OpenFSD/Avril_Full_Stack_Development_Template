@@ -10,6 +10,9 @@ namespace Avril_FSD
         [DllImport("LIBServerIOConcurrnecy.dll", EntryPoint = "?Initialise_Server_Concurrency@CLIBServerIOConcurrnecy@Avril_FSD@@SAPAXXZ")]
         public static extern IntPtr Initialise_Server_Concurrency();
 
+        [DllImport("LIBServerIOConcurrnecy.dll", EntryPoint = "?Initalise_Programs@CLIBServerIOConcurrnecy@Avril_FSD@@SAXPAVFramework_Server@2@@Z")]
+        public static extern void Initialise_Programs(IntPtr obj);
+
         [DllImport("LIBServerIOConcurrnecy.dll", EntryPoint = "?Flip_InBufferToWrite@CLIBServerIOConcurrnecy@Avril_FSD@@SAXPAVFramework_Server@2@@Z")]
         public static extern void Flip_InBufferToWrite(IntPtr obj);
 
@@ -17,7 +20,7 @@ namespace Avril_FSD
         public static extern void Flip_OutBufferToWrite(IntPtr obj);
 
 
-        [DllImport("LIBServerIOConcurrnecy.dll", EntryPoint = "?Get_flag_isNewInputDataReady@CLIBServerIOConcurrnecy@Avril_FSD@@SA_NPAVFramework_Server@2@@Z")]
+        [DllImport("LIBServerIOConcurrnecy.dll", EntryPoint = " ?Get_flag_isNewInputDataReady@CLIBServerIOConcurrnecy@Avril_FSD@@SA_NPAVFramework_Server@2@@Z")]
         public static extern bool Get_flag_isNewInputDataReady(IntPtr obj);
 
         [DllImport("LIBServerIOConcurrnecy.dll", EntryPoint = "?Get_flag_isNewOutputDataReady@CLIBServerIOConcurrnecy@Avril_FSD@@SA_NPAVFramework_Server@2@@Z")]
@@ -32,7 +35,7 @@ namespace Avril_FSD
         [DllImport("LIBServerIOConcurrnecy.dll", EntryPoint = "?Get_flag_IsInitialised_Avril_FSD_ServerConcurrency@CLIBServerIOConcurrnecy@Avril_FSD@@SA_NPAVFramework_Server@2@@Z")]
         public static extern bool Get_flag_Avril_FSD_ServerConcurrency_Initialised(IntPtr obj);
 
-        [DllImport("LIBServerIOConcurrnecy.dll", EntryPoint = "?Get_program_WriteEnableStack_ServerInputAction@CLIBServerIOConcurrnecy@Avril_FSD@@SAPAXPAVFramework_Server@2@@Z")]
+        [DllImport("LIBServerIOConcurrnecy.dll", EntryPoint = "?Get_program_WriteEnableStack_ServerInputAction@CLIBServerIOConcurrnecy@Avril_FSD@@SAPAXXZ")]
         public static extern IntPtr Get_program_WriteEnableStack_ServerInputAction();
 
         [DllImport("LIBServerIOConcurrnecy.dll", EntryPoint = "?Get_program_WriteEnableStack_ServerOutputRecieve@CLIBServerIOConcurrnecy@Avril_FSD@@SAPAXXZ")]
@@ -109,7 +112,7 @@ namespace Avril_FSD
         [DllImport("LIBServerIOConcurrnecy.dll", EntryPoint = "?Set_Praise1_Output_Player_Up@CLIBServerIOConcurrnecy@Avril_FSD@@SAXPAVFramework_Server@2@V?$Matrix@N$02$00$0A@$02$00@Eigen@@@Z")]
         public static extern void Set_Praise1_Output_Player_Up(float[] value);
 
-        [DllImport("LIBServerIOConcurrnecy.dll", EntryPoint = "?Set_Praise1_Output_Player_Right@CLIBServerIOConcurrnecy@Avril_FSD@@SAXPAVFramework_Server@2@V?$Matrix@N$02$00$0A@$02$00@Eigen@@@Z")]
+        [DllImport("LIBServerIOConcurrnecy.dll", EntryPoint = "?Set_Praise1_Output_Player_Right@CLIBServerIOConcurrnecy@Avril_FSD@@SAXPAVFramework_Server@2@V?$Matrix@N$02$00$0A@$02$00@Eigen@@@Z/")]
         public static extern void Set_Praise1_Output_Player_Right(float[] value);
 
     }

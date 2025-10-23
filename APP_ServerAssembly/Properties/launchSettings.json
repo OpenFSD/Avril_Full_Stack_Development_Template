@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "APP_ServerAssembly": {
+      "commandName": "Project",
+      "nativeDebugging": false
+    }
+  }
+}
